@@ -1,17 +1,17 @@
 package com.example.tvseries.ui.home
 
-import com.example.tvseries.model.Show
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tvseries.databinding.ItemShowBinding
+import com.example.tvseries.model.ShowList
 
 /**
  * Adapter of the list of tracks
  */
 
-class HomeAdapter(var fragment: HomeFragment, var list: ArrayList<Show>) :
+class HomeAdapter(private var fragment: HomeFragment, var list: ArrayList<ShowList>) :
     RecyclerView.Adapter<HomeAdapter.TracksAdapterViewHolder>() {
 
     private lateinit var vm: HomeViewModel
@@ -25,7 +25,7 @@ class HomeAdapter(var fragment: HomeFragment, var list: ArrayList<Show>) :
 
     override fun onBindViewHolder(holder: TracksAdapterViewHolder, position: Int) {
         holder.binding.viewModel = vm
-        holder.binding.show = list[position]
+        holder.binding.show = list[position].show
     }
 
     override fun getItemCount(): Int {

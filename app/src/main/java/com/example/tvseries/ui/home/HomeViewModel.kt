@@ -13,11 +13,12 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application, private val seriesRepository: SeriesRepository) : BaseViewModel(application), Callback {
 
+    var showList = MutableLiveData<ArrayList<ShowList>>()
     var friendSelected = MutableLiveData<Show>()
     val hideProgress = MutableLiveData(0)
 
     /**
-     * use of coroutine to call service getFriends()
+     * use of coroutine to call service getSeries()
      */
     fun getSeries() {
         hideProgress.postValue(1)
@@ -34,7 +35,7 @@ class HomeViewModel(application: Application, private val seriesRepository: Seri
     }
 
     override fun onSuccess(response: ArrayList<ShowList>) {
-//        TODO("Not yet implemented")
+        showList.postValue(response)
     }
 
     override fun onFailed(errorResponse: String) {
