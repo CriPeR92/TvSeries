@@ -3,9 +3,9 @@ package com.example.tvseries.data.repository
 import com.example.tvseries.data.retrofit.ApiInterface
 import com.example.tvseries.model.ShowList
 
-interface Callback {
-    fun onSuccess(response: ArrayList<ShowList>)
-    fun onFailed(errorResponse: String)
+interface CallbackSeries {
+    fun onSuccessShows(response: ArrayList<ShowList>)
+    fun onFailedShows(errorResponse: String)
 }
 
 class SeriesRepository(private val api : ApiInterface) {
@@ -16,13 +16,14 @@ class SeriesRepository(private val api : ApiInterface) {
      */
 
     suspend fun getSeries(
-        callback: Callback
+        callbackSeries: CallbackSeries,
+        search: String
     ) {
-        val response = api.getSeries()
+        val response = api.getSeries(q = search)
         if (response.isSuccessful) {
-            callback.onSuccess(response.body()!!)
+            callbackSeries.onSuccessShows(response.body()!!)
         } else {
-            callback.onFailed("error")
+            callbackSeries.onFailedShows("error")
         }
 
     }

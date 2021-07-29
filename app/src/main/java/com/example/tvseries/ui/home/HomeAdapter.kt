@@ -12,18 +12,18 @@ import com.example.tvseries.model.ShowList
  */
 
 class HomeAdapter(private var fragment: HomeFragment, var list: ArrayList<ShowList>) :
-    RecyclerView.Adapter<HomeAdapter.TracksAdapterViewHolder>() {
+    RecyclerView.Adapter<HomeAdapter.HomeAdapterViewHolder>() {
 
     private lateinit var vm: HomeViewModel
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TracksAdapterViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemShowBinding.inflate(layoutInflater)
         vm = ViewModelProvider(fragment).get(HomeViewModel::class.java)
-        return TracksAdapterViewHolder(binding)
+        return HomeAdapterViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TracksAdapterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeAdapterViewHolder, position: Int) {
         holder.binding.viewModel = vm
         holder.binding.show = list[position].show
     }
@@ -32,6 +32,6 @@ class HomeAdapter(private var fragment: HomeFragment, var list: ArrayList<ShowLi
         return list.size
     }
 
-    class TracksAdapterViewHolder(val binding: ItemShowBinding) :
+    class HomeAdapterViewHolder(val binding: ItemShowBinding) :
         RecyclerView.ViewHolder(binding.root)
 }

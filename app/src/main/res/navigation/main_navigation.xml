@@ -10,6 +10,19 @@
         android:name="com.example.tvseries.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_showFragment"
+            app:destination="@id/seasonFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/seasonFragment"
+        android:name="com.example.tvseries.ui.show.ShowFragment"
+        android:label="fragment_season"
+        tools:layout="@layout/fragment_show">
     </fragment>
 
 </navigation>
