@@ -74,8 +74,8 @@ fun hideIfNull(view: TextView, data: String?) {
  * bind to know when to hide or show a view
  */
 @BindingAdapter("app:hideIfSaved")
-fun hideIfSaved(view: View, number: Int) {
-    view.visibility = if (number == 0) View.GONE else View.VISIBLE
+fun hideIfSaved(view: View, number: Boolean) {
+    view.visibility = if (!number) View.GONE else View.VISIBLE
 }
 
 /**

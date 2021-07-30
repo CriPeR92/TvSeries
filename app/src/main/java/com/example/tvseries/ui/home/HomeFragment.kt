@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.tvseries.R
 import com.example.tvseries.databinding.FragmentHomeBinding
-import com.example.tvseries.extension.Event
 import com.google.gson.Gson
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -43,36 +41,42 @@ class HomeFragment : Fragment() {
         /**
          * Observer to know when the friends are loaded, recyclerView is updated
          */
-        viewModel.showList.observe(binding.lifecycleOwner!!, { it ->
-            it.getContentIfNotHandled()?.let {
-                viewModel.hideProgress.postValue(0)
-                adapter = HomeAdapter(
-                    this,
-                    it
-                )
-                binding.adapter = adapter
-                adapter.notifyDataSetChanged()
-            }
+        viewModel.showList.observe(binding.lifecycleOwner!!, {
+            viewModel.hideProgress.postValue(false)
+            adapter = HomeAdapter(
+                this,
+                it
+            )
+            binding.adapter = adapter
+            adapter.notifyDataSetChanged()
         })
 
-        viewModel.seasons.observe(binding.lifecycleOwner!!, { it
-            it.getContentIfNotHandled()?.let {
-                viewModel.hideProgress.postValue(0)
-                val bundle =
-                    bundleOf("Seasons" to Gson().toJson(Event(viewModel.seasons.value)),
-                        "Show" to Gson().toJson(viewModel.showSelected.value))
-                findNavController().navigate(
-                    R.id.action_homeFragment_to_showFragment,
-                    bundle
+        viewModel.seasons.observe(binding.lifecycleOwner!!, {
+            viewModel.hideProgress.postValue(false)
+            val bundle =
+                bundleOf(
+                    "Seasons" to Gson().toJson(it),
+                    "Show" to Gson().toJson(viewModel.showSelected.value),
+                    "Favorite" to true
                 )
-            }
+            findNavController().navigate(
+                R.id.action_homeFragment_to_showFragment,
+                bundle
+            )
+        })
+
+        viewModel.showFavorites.observe(binding.lifecycleOwner!!, {
+            findNavController().navigate(R.id.action_homeFragment_to_favoritesFragment)
         })
 
         if (!::adapter.isInitialized) {
             viewModel.getSeries()
+            adapter = HomeAdapter(this, ArrayList())
+            binding.adapter = adapter
+        } else {
+            binding.adapter = adapter
         }
-        adapter = HomeAdapter(this, ArrayList())
-        binding.adapter = adapter
+
     }
 
 }

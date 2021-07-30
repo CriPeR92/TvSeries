@@ -14,8 +14,12 @@
             android:id="@+id/action_homeFragment_to_showFragment"
             app:destination="@id/seasonFragment"
             app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="false"/>
-
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_homeFragment_to_favoritesFragment"
+            app:destination="@id/favoriteFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -26,14 +30,26 @@
         <action
             android:id="@+id/action_seasonFragment_to_episodeFragment"
             app:destination="@id/episodeFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="false"/>
+            app:popUpTo="@id/seasonFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
         android:id="@+id/episodeFragment"
         android:name="com.example.tvseries.ui.episode.EpisodeFragment"
         android:label="fragment_episode"
-        tools:layout="@layout/fragment_episode"/>
+        tools:layout="@layout/fragment_episode" />
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.tvseries.ui.favorites.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites">
+        <action
+            android:id="@+id/action_favoriteFragment_to_seasonFragment"
+            app:destination="@id/seasonFragment"
+            app:popUpTo="@id/favoriteFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 
 </navigation>

@@ -3,12 +3,12 @@ package com.example.tvseries.ui.home
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.tvseries.base.LiveEvent
 import com.example.tvseries.base.BaseViewModel
 import com.example.tvseries.data.repository.CallbackSeasons
 import com.example.tvseries.data.repository.CallbackSeries
 import com.example.tvseries.data.repository.SeasonsRepository
 import com.example.tvseries.data.repository.SeriesRepository
-import com.example.tvseries.extension.Event
 import com.example.tvseries.model.Episode
 import com.example.tvseries.model.Show
 import com.example.tvseries.model.ShowList
@@ -17,18 +17,19 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application, private val seriesRepository: SeriesRepository, private val seasonsRepository: SeasonsRepository) : BaseViewModel(application), CallbackSeries, CallbackSeasons {
 
-    var showList = MutableLiveData<Event<ArrayList<ShowList>>>()
+    var showList = LiveEvent<ArrayList<ShowList>>()
     var showSelected = MutableLiveData<Show>()
-    var seasons = MutableLiveData<Event<ArrayList<Episode>>>()
-    val hideProgress = MutableLiveData(0)
+    var seasons = LiveEvent<ArrayList<Episode>>()
+    val hideProgress = MutableLiveData(false)
     var search: String = ""
+    var showFavorites = LiveEvent<Boolean>()
 
     /**
      * Function that invokes the repository with the parameters requiered, only if the input is valid
      */
     fun search() {
         if (Validator.validateInput(search)) {
-            hideProgress.value = 1
+            hideProgress.value = true
             viewModelScope.launch(Dispatchers.IO) {
                 seriesRepository.getSeries(this@HomeViewModel, search)
             }
@@ -39,7 +40,7 @@ class HomeViewModel(application: Application, private val seriesRepository: Seri
      * use of coroutine to call service getSeries()
      */
     fun getSeries() {
-        hideProgress.postValue(1)
+        hideProgress.postValue(true)
         viewModelScope.launch(Dispatchers.IO) {
             seriesRepository.getSeries(this@HomeViewModel, "girls")
         }
@@ -49,15 +50,19 @@ class HomeViewModel(application: Application, private val seriesRepository: Seri
      * Function when click on item of recyclerView
      */
     fun onClickActionGridAdapter(show: Show) {
-        hideProgress.postValue(1)
+        hideProgress.postValue(true)
         showSelected.postValue(show)
         viewModelScope.launch(Dispatchers.IO) {
             seasonsRepository.getSeasons(this@HomeViewModel, show.id.toString())
         }
     }
 
+    fun favorites() {
+        showFavorites.postValue(true)
+    }
+
     override fun onSuccessShows(response: ArrayList<ShowList>) {
-       showList.postValue(Event(response))
+       showList.postValue(response)
     }
 
     override fun onFailedShows(errorResponse: String) {
@@ -69,7 +74,7 @@ class HomeViewModel(application: Application, private val seriesRepository: Seri
     }
 
     override fun onSuccessSeasons(response: ArrayList<Episode>) {
-        seasons.postValue(Event(response))
+        seasons.postValue(response)
     }
 
 

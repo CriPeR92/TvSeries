@@ -1,6 +1,8 @@
 package com.example.tvseries.di
 
 import com.example.tvseries.ui.episode.EpisodeViewModel
+import com.example.tvseries.ui.favorites.FavoritesFragment
+import com.example.tvseries.ui.favorites.FavoritesViewModel
 import com.example.tvseries.ui.home.HomeViewModel
 import com.example.tvseries.ui.show.ShowViewModel
 import org.koin.android.ext.koin.androidApplication
@@ -11,4 +13,5 @@ val viewModelModule = module {
     viewModel { HomeViewModel(androidApplication(), get(), get()) }
     viewModel { ShowViewModel(androidApplication()) }
     viewModel { EpisodeViewModel(androidApplication()) }
+    viewModel { FavoritesViewModel(androidApplication(), get()) }
 }
