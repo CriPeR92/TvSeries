@@ -2,7 +2,8 @@ package com.example.tvseries.extension
 
 import android.view.View
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
+import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tvseries.R
 import com.example.tvseries.model.Episode
 import com.squareup.picasso.Picasso
+import org.w3c.dom.Text
 
 @BindingAdapter("bind:imageUrl")
 fun loadImage(view: ImageView, imageUrl: String?) {
@@ -27,6 +29,16 @@ fun loadImage(view: ImageView, imageUrl: String?) {
 /**
  * Function to set adapter in recyclerView and set recyclerView features
  */
+@BindingAdapter(value = ["app:setHtml"])
+fun setHtmlText(view: TextView, text: String?) {
+    if (text != null) {
+        view.text = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY);
+    }
+}
+
+/**
+ * Function to set adapter in recyclerView and set recyclerView features
+ */
 @BindingAdapter(value = ["setAdapter"])
 fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
     this.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -34,12 +46,27 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
     this.adapter = adapter
 }
 
+
 @BindingAdapter("app:setRecycler")
 fun setRecycler(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     view.run {
         this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         this.setHasFixedSize(true)
+        this.isNestedScrollingEnabled = false
         this.adapter = adapter
+    }
+}
+
+/**
+ * bind to know when to hide or show a view
+ */
+@BindingAdapter("app:hideIfNull")
+fun hideIfNull(view: TextView, data: String?) {
+    view.visibility = if (data == null || data == "") {
+        View.GONE
+    } else {
+        view.text = data
+        View.VISIBLE
     }
 }
 

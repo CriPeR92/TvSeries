@@ -12,9 +12,8 @@ import com.example.tvseries.ui.home.HomeViewModel
  * Adapter of the list of tracks
  */
 
-class GenreAdapter(var list: ArrayList<String>) :
+class GenreAdapter(private var fragment: ShowFragment, private var list: ArrayList<String>) :
     RecyclerView.Adapter<GenreAdapter.GenreAdapterViewHolder>() {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenreAdapterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

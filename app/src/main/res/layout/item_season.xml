@@ -3,34 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
+
         <variable
             name="episode"
             type="com.example.tvseries.model.Episode" />
+
+        <variable
+            name="viewModel"
+            type="com.example.tvseries.ui.show.ShowViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvSeason"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/dp_16"
             android:layout_marginHorizontal="@dimen/dp_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:textStyle="bold"
             android:text="@{@string/season(episode.number)}"
             app:hideHeader="@{episode}"/>
 
         <TextView
             android:id="@+id/tvEpisode"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/dp_8"
             android:layout_marginHorizontal="@dimen/dp_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSeason"
-            android:text="@{@string/episode(episode.name)}"/>
+            android:onClick="@{() -> viewModel.onClickActionGridAdapter(episode)}"
+            android:text="@{@string/episode(episode.name)}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

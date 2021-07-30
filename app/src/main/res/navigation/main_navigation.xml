@@ -23,6 +23,17 @@
         android:name="com.example.tvseries.ui.show.ShowFragment"
         android:label="fragment_season"
         tools:layout="@layout/fragment_show">
+        <action
+            android:id="@+id/action_seasonFragment_to_episodeFragment"
+            app:destination="@id/episodeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/episodeFragment"
+        android:name="com.example.tvseries.ui.episode.EpisodeFragment"
+        android:label="fragment_episode"
+        tools:layout="@layout/fragment_episode"/>
 
 </navigation>

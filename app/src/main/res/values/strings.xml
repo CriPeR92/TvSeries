@@ -5,4 +5,11 @@
     <string name="search">search</string>
     <string name="season">Season: %1$s</string>
     <string name="episode"> - %1$s</string>
+    <string name="genres">Genres: </string>
+
+    <string name="episode_name">Episode Name: %1$s</string>
+    <string name="episode_number">Episode Number: %1$s</string>
+    <string name="episode_season">Season: %1$s</string>
+
+
 </resources>

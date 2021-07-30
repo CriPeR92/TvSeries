@@ -8,6 +8,7 @@ import com.example.tvseries.data.repository.CallbackSeasons
 import com.example.tvseries.data.repository.CallbackSeries
 import com.example.tvseries.data.repository.SeasonsRepository
 import com.example.tvseries.data.repository.SeriesRepository
+import com.example.tvseries.extension.Event
 import com.example.tvseries.model.Episode
 import com.example.tvseries.model.Show
 import com.example.tvseries.model.ShowList
@@ -16,9 +17,9 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application, private val seriesRepository: SeriesRepository, private val seasonsRepository: SeasonsRepository) : BaseViewModel(application), CallbackSeries, CallbackSeasons {
 
-    var showList = MutableLiveData<ArrayList<ShowList>>()
+    var showList = MutableLiveData<Event<ArrayList<ShowList>>>()
     var showSelected = MutableLiveData<Show>()
-    var seasons = MutableLiveData<ArrayList<Episode>>()
+    var seasons = MutableLiveData<Event<ArrayList<Episode>>>()
     val hideProgress = MutableLiveData(0)
     var search: String = ""
 
@@ -56,7 +57,7 @@ class HomeViewModel(application: Application, private val seriesRepository: Seri
     }
 
     override fun onSuccessShows(response: ArrayList<ShowList>) {
-       showList.postValue(response)
+       showList.postValue(Event(response))
     }
 
     override fun onFailedShows(errorResponse: String) {
@@ -68,7 +69,7 @@ class HomeViewModel(application: Application, private val seriesRepository: Seri
     }
 
     override fun onSuccessSeasons(response: ArrayList<Episode>) {
-        seasons.postValue(response)
+        seasons.postValue(Event(response))
     }
 
 

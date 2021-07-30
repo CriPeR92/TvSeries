@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View" />
+
         <variable
             name="show"
             type="com.example.tvseries.model.Show" />
@@ -36,7 +38,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivImage"
             android:text="@{show.name}" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

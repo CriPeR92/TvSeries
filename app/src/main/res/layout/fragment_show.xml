@@ -21,105 +21,115 @@
 
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:background="@color/white">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp_8">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:fillViewport="true"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/dp_8"
-                android:text="@{viewModel.showSelected.name}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/ivImage"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvName"
-                bind:imageUrl="@{viewModel.showSelected.image.original}" />
-
-            <LinearLayout
-                android:id="@+id/llTime"
-                android:layout_marginVertical="@dimen/dp_8"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dp_16"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivImage">
+                android:padding="@dimen/dp_8">
 
                 <TextView
+                    android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{viewModel.showSelected.schedule.days[0]}" />
+                    android:layout_marginVertical="@dimen/dp_8"
+                    android:text="@{viewModel.showSelected.name}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvName"
+                    bind:imageUrl="@{viewModel.showSelected.image.original}" />
+
+                <LinearLayout
+                    android:id="@+id/llTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_16"
+                    android:layout_marginVertical="@dimen/dp_8"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivImage">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        app:hideIfNull="@{viewModel.showSelected.schedule.days[0]}" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        app:hideIfNull="@{viewModel.showSelected.schedule.time}" />
+                </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvGenres"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:text="@{viewModel.showSelected.schedule.time}" />
-            </LinearLayout>
+                    android:layout_marginVertical="@dimen/dp_8"
+                    android:text="@string/genres"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llTime" />
 
-            <TextView
-                android:id="@+id/tvGenres"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/dp_8"
-                android:text="Genres:"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/llTime"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvGenres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dp_8"
+                    android:overScrollMode="never"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvGenres"
+                    app:setRecycler="@{genderAdapter}" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvGenres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:setRecycler="@{genderAdapter}"
-                android:layout_marginVertical="@dimen/dp_8"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvGenres"/>
-
-            <TextView
-                android:id="@+id/tvSummary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/dp_8"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvGenres"
-                android:text="@{viewModel.showSelected.summary}"/>
+                <TextView
+                    android:id="@+id/tvSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dp_8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvGenres"
+                    app:setHtml="@{viewModel.showSelected.summary}" />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvSeasons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:setRecycler="@{seasonAdapter}"
-                android:layout_marginVertical="@dimen/dp_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSummary" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSeasons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dp_16"
+                    android:overScrollMode="never"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvSummary"
+                    app:setRecycler="@{seasonAdapter}" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.core.widget.NestedScrollView>
-
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
