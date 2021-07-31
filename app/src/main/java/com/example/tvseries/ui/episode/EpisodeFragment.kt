@@ -8,14 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.tvseries.R
 import com.example.tvseries.databinding.FragmentEpisodeBinding
-import com.example.tvseries.databinding.FragmentShowBinding
 import com.example.tvseries.model.Episode
-import com.example.tvseries.model.Show
-import com.example.tvseries.ui.show.GenreAdapter
-import com.example.tvseries.ui.show.SeasonsAdapter
-import com.example.tvseries.ui.show.ShowViewModel
 import com.google.gson.Gson
-import org.koin.android.viewmodel.ext.android.viewModel
 
 class EpisodeFragment : Fragment() {
 

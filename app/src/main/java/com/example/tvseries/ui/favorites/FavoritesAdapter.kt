@@ -7,10 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tvseries.databinding.ItemShowFavoriteBinding
 import com.example.tvseries.model.Show
 
-/**
- * Adapter of the list of tracks
- */
-
 class FavoritesAdapter(private var fragment: FavoritesFragment, var list: ArrayList<Show>) :
     RecyclerView.Adapter<FavoritesAdapter.FavoritesAdapterViewHolder>() {
 

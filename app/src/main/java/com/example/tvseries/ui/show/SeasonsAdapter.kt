@@ -6,12 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tvseries.databinding.ItemSeasonBinding
 import com.example.tvseries.model.Episode
-import com.example.tvseries.ui.home.HomeFragment
-import com.example.tvseries.ui.home.HomeViewModel
-
-/**
- * Adapter of the list of tracks
- */
 
 class SeasonsAdapter(private var fragment: ShowFragment, var list: ArrayList<Episode>) :
     RecyclerView.Adapter<SeasonsAdapter.SeasonsAdapterViewHolder>() {

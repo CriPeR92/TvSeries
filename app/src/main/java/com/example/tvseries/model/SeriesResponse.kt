@@ -2,10 +2,6 @@ package com.example.tvseries.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * Main model response from TV MAZE API
- */
-
 class ShowList(
     @SerializedName("score") var score: Float?,
     @SerializedName("show") var show: Show?,

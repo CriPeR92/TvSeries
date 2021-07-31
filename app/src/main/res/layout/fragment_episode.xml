@@ -4,6 +4,7 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="episode"
             type="com.example.tvseries.model.Episode" />
@@ -22,41 +23,41 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:imageUrl="@{episode.image.original}"/>
+            bind:imageUrl="@{episode.image.original}" />
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{@string/episode_name(episode.name)}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivImage"
-            android:text="@{@string/episode_name(episode.name)}"/>
+            app:layout_constraintTop_toBottomOf="@id/ivImage" />
 
         <TextView
             android:id="@+id/tvSeason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{@string/episode_season(episode.season.toString())}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
-            android:text="@{@string/episode_season(episode.season.toString())}"/>
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
 
         <TextView
             android:id="@+id/tvNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{@string/episode_number(episode.number.toString())}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSeason"
-            android:text="@{@string/episode_number(episode.number.toString())}"/>
+            app:layout_constraintTop_toBottomOf="@id/tvSeason" />
 
         <TextView
-            android:layout_marginVertical="@dimen/dp_8"
             android:id="@+id/tvSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNumber"
-            app:setHtml="@{episode.summary}"/>
+            app:setHtml="@{episode.summary}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

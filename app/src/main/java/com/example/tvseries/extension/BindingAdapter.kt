@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tvseries.R
 import com.example.tvseries.model.Episode
 import com.squareup.picasso.Picasso
-import org.w3c.dom.Text
 
 @BindingAdapter("bind:imageUrl")
 fun loadImage(view: ImageView, imageUrl: String?) {
@@ -26,9 +25,7 @@ fun loadImage(view: ImageView, imageUrl: String?) {
 
 }
 
-/**
- * Function to set adapter in recyclerView and set recyclerView features
- */
+
 @BindingAdapter(value = ["app:setHtml"])
 fun setHtmlText(view: TextView, text: String?) {
     if (text != null) {
@@ -37,7 +34,7 @@ fun setHtmlText(view: TextView, text: String?) {
 }
 
 /**
- * Function to set adapter in recyclerView and set recyclerView features
+ * Function to set adapter in recyclerView and set recyclerView features (GRID)
  */
 @BindingAdapter(value = ["setAdapter"])
 fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
@@ -46,7 +43,9 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
     this.adapter = adapter
 }
 
-
+/**
+ * Function to set adapter in recyclerView and set recyclerView features (VERTICAL)
+ */
 @BindingAdapter("app:setRecycler")
 fun setRecycler(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     view.run {
@@ -78,9 +77,6 @@ fun hideIfSaved(view: View, number: Boolean) {
     view.visibility = if (!number) View.GONE else View.VISIBLE
 }
 
-/**
- * bind to know when to hide or show a view
- */
 @BindingAdapter("app:hideHeader")
 fun hideHeader(view: View, episode: Episode) {
     if (episode.season == episode.number) {

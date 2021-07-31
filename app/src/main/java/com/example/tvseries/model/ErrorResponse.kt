@@ -2,10 +2,6 @@ package com.example.tvseries.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * Model to manage error Response from services
- */
-
 class Error(@SerializedName("messages") var data: ArrayList<ErrorMessages>)
 
 class ErrorMessages(

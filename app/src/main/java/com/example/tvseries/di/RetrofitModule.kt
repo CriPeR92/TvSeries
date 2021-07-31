@@ -24,7 +24,7 @@ val retrofitModule = module {
     single { retrofitBuilder() }
 }
 
-private fun Scope.retrofitBuilder() : Retrofit {
+private fun Scope.retrofitBuilder(): Retrofit {
     return Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create(get()))

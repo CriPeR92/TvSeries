@@ -33,8 +33,8 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
-            android:fillViewport="true"
             android:layout_height="match_parent"
+            android:fillViewport="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -57,23 +57,26 @@
                         android:id="@+id/tvName"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginVertical="@dimen/dp_4"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
                         android:gravity="center"
-                        android:layout_marginVertical="@dimen/dp_8"
+                        android:maxLines="1"
                         android:text="@{viewModel.showSelected.name}"
-                        android:layout_weight="1"/>
+                        android:textSize="@dimen/sp_32"
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/btnFavorites"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_8"
-                        app:hideIfSaved="@{favorite}"
                         android:onClick="@{() -> viewModel.addFavorites()}"
                         android:text="@string/add_favorites"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        app:hideIfSaved="@{favorite}" />
 
                 </LinearLayout>
-
 
 
                 <ImageView

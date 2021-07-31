@@ -2,10 +2,6 @@ package com.example.tvseries.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * Main model response from TV MAZE API
- */
-
 class Episode(
     @SerializedName("id") var id: Int?,
     @SerializedName("url") var url: String?,

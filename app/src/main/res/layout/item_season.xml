@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -23,24 +24,24 @@
             android:id="@+id/tvSeason"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/dp_16"
             android:layout_marginHorizontal="@dimen/dp_16"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textStyle="bold"
+            android:layout_marginVertical="@dimen/dp_16"
             android:text="@{@string/season(episode.number)}"
-            app:hideHeader="@{episode}"/>
+            android:textStyle="bold"
+            app:hideHeader="@{episode}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvEpisode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dp_8"
             android:layout_marginHorizontal="@dimen/dp_16"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSeason"
             android:onClick="@{() -> viewModel.onClickActionGridAdapter(episode)}"
-            android:text="@{@string/episode(episode.name)}" />
+            android:padding="@dimen/dp_8"
+            android:text="@{@string/episode(episode.name)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSeason" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

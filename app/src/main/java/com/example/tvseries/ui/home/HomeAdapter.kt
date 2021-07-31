@@ -7,10 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tvseries.databinding.ItemShowBinding
 import com.example.tvseries.model.ShowList
 
-/**
- * Adapter of the list of tracks
- */
-
 class HomeAdapter(private var fragment: HomeFragment, var list: ArrayList<ShowList>) :
     RecyclerView.Adapter<HomeAdapter.HomeAdapterViewHolder>() {
 

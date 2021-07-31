@@ -38,9 +38,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /**
-         * Observer to know when the friends are loaded, recyclerView is updated
-         */
         viewModel.showList.observe(binding.lifecycleOwner!!, {
             viewModel.hideProgress.postValue(false)
             adapter = HomeAdapter(

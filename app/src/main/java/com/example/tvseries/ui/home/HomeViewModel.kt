@@ -10,8 +10,10 @@ import com.example.tvseries.data.repository.CallbackSeries
 import com.example.tvseries.data.repository.SeasonsRepository
 import com.example.tvseries.data.repository.SeriesRepository
 import com.example.tvseries.model.Episode
+import com.example.tvseries.model.Error
 import com.example.tvseries.model.Show
 import com.example.tvseries.model.ShowList
+import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -23,10 +25,8 @@ class HomeViewModel(application: Application, private val seriesRepository: Seri
     val hideProgress = MutableLiveData(false)
     var search: String = ""
     var showFavorites = LiveEvent<Boolean>()
+    var error = LiveEvent<Error>()
 
-    /**
-     * Function that invokes the repository with the parameters requiered, only if the input is valid
-     */
     fun search() {
         if (Validator.validateInput(search)) {
             hideProgress.value = true
@@ -36,9 +36,6 @@ class HomeViewModel(application: Application, private val seriesRepository: Seri
         }
     }
 
-    /**
-     * use of coroutine to call service getSeries()
-     */
     fun getSeries() {
         hideProgress.postValue(true)
         viewModelScope.launch(Dispatchers.IO) {
@@ -46,9 +43,6 @@ class HomeViewModel(application: Application, private val seriesRepository: Seri
         }
     }
 
-    /**
-     * Function when click on item of recyclerView
-     */
     fun onClickActionGridAdapter(show: Show) {
         hideProgress.postValue(true)
         showSelected.postValue(show)
@@ -66,16 +60,15 @@ class HomeViewModel(application: Application, private val seriesRepository: Seri
     }
 
     override fun onFailedShows(errorResponse: String) {
-//        TODO("Not yet implemented")
+        error.postValue(Gson().fromJson(errorResponse, Error::class.java))
     }
 
     override fun onFailed(errorResponse: String) {
-//        TODO("Not yet implemented")
+        error.postValue(Gson().fromJson(errorResponse, Error::class.java))
     }
 
     override fun onSuccessSeasons(response: ArrayList<Episode>) {
         seasons.postValue(response)
     }
-
 
 }

@@ -30,7 +30,7 @@ class ShowFragment : Fragment() {
     lateinit var genderAdapter: GenreAdapter
     lateinit var seasonsAdapter: SeasonsAdapter
     private var prefs: SharedPreferences? = null
-    private var list : ArrayList<Show>? = null
+    private var list: ArrayList<Show>? = null
     private var favorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -8,12 +8,7 @@ interface CallbackSeries {
     fun onFailedShows(errorResponse: String)
 }
 
-class SeriesRepository(private val api : ApiInterface) {
-
-    /**
-     * Function getFriends, to get a list of users
-     * Response: FriendsResponse
-     */
+class SeriesRepository(private val api: ApiInterface) {
 
     suspend fun getSeries(
         callbackSeries: CallbackSeries,

@@ -12,9 +12,6 @@ class ShowViewModel(application: Application) : BaseViewModel(application) {
     var showSelected = LiveEvent<Show>()
     var addFavorites = LiveEvent<Boolean>()
 
-    /**
-     * Function when click on item of recyclerView
-     */
     fun onClickActionGridAdapter(episode: Episode) {
         episodeSelected.postValue(episode)
     }

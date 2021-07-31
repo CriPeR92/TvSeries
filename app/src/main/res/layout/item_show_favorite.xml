@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/tools">
+
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -27,18 +29,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:imageUrl="@{show.image.original}"/>
+            bind:imageUrl="@{show.image.original}" />
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@{show.name}"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivImage"
-            android:text="@{show.name}" />
+            app:layout_constraintTop_toBottomOf="@id/ivImage" />
 
         <Button
             android:id="@+id/btnFavorites"
@@ -46,11 +48,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"
             android:onClick="@{() -> viewModel.removeFavorite(show)}"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/remove"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

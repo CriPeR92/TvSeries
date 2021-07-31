@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.tvseries.R
 import com.example.tvseries.databinding.FragmentFavoritesBinding
 import com.example.tvseries.model.Show
-import com.example.tvseries.model.ShowList
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.koin.android.viewmodel.ext.android.viewModel

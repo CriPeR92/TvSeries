@@ -8,12 +8,7 @@ interface CallbackSeasons {
     fun onFailed(errorResponse: String)
 }
 
-class SeasonsRepository(private val api : ApiInterface) {
-
-    /**
-     * Function getFriends, to get a list of users
-     * Response: FriendsResponse
-     */
+class SeasonsRepository(private val api: ApiInterface) {
 
     suspend fun getSeasons(
         callbackSeasons: CallbackSeasons,

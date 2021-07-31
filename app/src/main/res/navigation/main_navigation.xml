@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -41,6 +41,31 @@
         tools:layout="@layout/fragment_episode" />
 
     <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.tvseries.ui.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_homeFragment_to_showFragment"
+            app:destination="@id/seasonFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_favoritesFragment"
+            app:destination="@id/favoriteFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_peopleFragment_to_personFragment"
+            app:destination="@id/personFragment"
+            app:popUpTo="@id/peopleFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+
+    <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.tvseries.ui.favorites.FavoritesFragment"
         android:label="fragment_favorites"
@@ -49,6 +74,30 @@
             android:id="@+id/action_favoriteFragment_to_seasonFragment"
             app:destination="@id/seasonFragment"
             app:popUpTo="@id/favoriteFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/peopleFragment"
+        android:name="com.example.tvseries.ui.people.PeopleFragment"
+        android:label="fragment_people"
+        tools:layout="@layout/fragment_people">
+        <action
+            android:id="@+id/action_peopleFragment_to_personFragment"
+            app:destination="@id/personFragment"
+            app:popUpTo="@id/peopleFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/personFragment"
+        android:name="com.example.tvseries.ui.person.PersonFragment"
+        android:label="fragment_person"
+        tools:layout="@layout/fragment_person">
+        <action
+            android:id="@+id/action_personFragment_to_episodeFragment"
+            app:destination="@id/seasonFragment"
+            app:popUpTo="@id/personFragment"
             app:popUpToInclusive="false" />
     </fragment>
 
