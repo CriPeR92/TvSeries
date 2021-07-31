@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Tv Series</string>
+    <string name="actors">Tv Actors</string>
+    <string name="unexpected_error">Unexpected Error.</string>
+    <string name="search_hint">search your series</string>
+    <string name="search_actors">search your actors</string>
+    <string name="search">search</string>
+    <string name="favorites">favorites</string>
+    <string name="add_favorites">add favorites</string>
+    <string name="remove">remove</string>
+    <string name="season">Season: %1$s</string>
+    <string name="episode"> - %1$s</string>
+    <string name="genres">Genres: </string>
+    <string name="added">Added to favorites</string>
+    <string name="removed">Removed from favorites</string>
+    <string name="inList">Already in favorites</string>
+    <string name="episode_name">Episode Name: %1$s</string>
+    <string name="episode_number">Episode Number: %1$s</string>
+    <string name="episode_season">Season: %1$s</string>
 </resources>
